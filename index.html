@@ -9,11 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Deep Charcoal Grey & Slate/Electric Blue Primary Theme */
+      /* Theme 1 (Default Lead Theme): Deep Charcoal Grey & Slate/Electric Blue */
       --bg-page: #0c1017;
       --bg-surface: #131923;
       --bg-panel: #192230;
       --bg-elevated: #1f2b3d;
+      --bg-page-grad-1: rgba(78, 168, 255, 0.12);
+      --bg-page-grad-2: rgba(30, 64, 175, 0.18);
+      --header-bg: rgba(19, 25, 35, 0.9);
       --ink-primary: #eef3fa;
       --ink-secondary: #b4c2d6;
       --ink-muted: #7b8da6;
@@ -30,27 +33,71 @@
       --neu-ink: #93c5fd;
       --neg-bg: rgba(248, 113, 113, 0.16);
       --neg-ink: #fca5a5;
+      --chart-maroon: #7f1d1d;
+      --chart-maroon-bright: #b91c1c;
+      --chart-green: #14532d;
+      --chart-green-bright: #15803d;
       --radius-lg: 18px;
       --radius-md: 12px;
       --radius-pill: 999px;
       --shadow-shell: 0 28px 70px rgba(3, 6, 12, 0.72);
     }
 
-    /* Optional High-Contrast Midnight Navy Variant */
-    body.theme-midnight-blue {
-      --bg-page: #070b12;
-      --bg-surface: #0e1522;
-      --bg-panel: #141e30;
-      --bg-elevated: #1b2840;
-      --ink-primary: #f1f6ff;
-      --ink-secondary: #b8c9e3;
-      --ink-muted: #7388a8;
-      --accent-blue: #38bdf8;
-      --accent-blue-bright: #7dd3fc;
-      --accent-blue-soft: rgba(56, 189, 248, 0.15);
-      --accent-blue-glow: rgba(56, 189, 248, 0.32);
-      --border-subtle: #1f2f4a;
-      --border-accent: #38bdf8;
+    /* Theme 2: Grey & Black */
+    body.theme-grey-black {
+      --bg-page: #070708;
+      --bg-surface: #111214;
+      --bg-panel: #181a1d;
+      --bg-elevated: #22252a;
+      --bg-page-grad-1: rgba(161, 161, 170, 0.08);
+      --bg-page-grad-2: rgba(63, 63, 70, 0.14);
+      --header-bg: rgba(17, 18, 20, 0.92);
+      --ink-primary: #f4f4f5;
+      --ink-secondary: #b4b4bc;
+      --ink-muted: #787882;
+      --ink-inverse: #070708;
+      --accent-blue: #a1a1aa;
+      --accent-blue-bright: #e4e4e7;
+      --accent-blue-soft: rgba(161, 161, 170, 0.14);
+      --accent-blue-glow: rgba(161, 161, 170, 0.25);
+      --border-subtle: #2b2e35;
+      --border-accent: #d4d4d8;
+      --chart-maroon: #6b1818;
+      --chart-maroon-bright: #991b1b;
+      --chart-green: #134e2a;
+      --chart-green-bright: #166534;
+    }
+
+    /* Theme 3: White, Light Blue & Grey */
+    body.theme-light-sky {
+      --bg-page: #eef3f8;
+      --bg-surface: #ffffff;
+      --bg-panel: #f5f8fc;
+      --bg-elevated: #e8eff7;
+      --bg-page-grad-1: rgba(56, 189, 248, 0.14);
+      --bg-page-grad-2: rgba(148, 163, 184, 0.18);
+      --header-bg: rgba(255, 255, 255, 0.92);
+      --ink-primary: #142033;
+      --ink-secondary: #475569;
+      --ink-muted: #64748b;
+      --ink-inverse: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-bright: #0369a1;
+      --accent-blue-soft: rgba(2, 132, 199, 0.11);
+      --accent-blue-glow: rgba(2, 132, 199, 0.22);
+      --border-subtle: #cbd5e1;
+      --border-accent: #0284c7;
+      --pos-bg: rgba(21, 128, 61, 0.12);
+      --pos-ink: #166534;
+      --neu-bg: rgba(2, 132, 199, 0.12);
+      --neu-ink: #0369a1;
+      --neg-bg: rgba(153, 27, 27, 0.12);
+      --neg-ink: #991b1b;
+      --chart-maroon: #7f1d1d;
+      --chart-maroon-bright: #991b1b;
+      --chart-green: #14532d;
+      --chart-green-bright: #166534;
+      --shadow-shell: 0 24px 60px rgba(15, 23, 42, 0.1);
     }
 
     * {
@@ -65,8 +112,8 @@
 
     body {
       background:
-        radial-gradient(circle at 12% 8%, rgba(78, 168, 255, 0.12), transparent 42%),
-        radial-gradient(circle at 88% 18%, rgba(30, 64, 175, 0.18), transparent 45%),
+        radial-gradient(circle at 12% 8%, var(--bg-page-grad-1), transparent 42%),
+        radial-gradient(circle at 88% 18%, var(--bg-page-grad-2), transparent 45%),
         var(--bg-page);
       color: var(--ink-primary);
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -81,7 +128,7 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background: rgba(78, 168, 255, 0.1);
+      background: var(--accent-blue-soft);
       z-index: 120;
     }
 
@@ -121,13 +168,9 @@
       justify-content: space-between;
       gap: 12px;
       padding: 14px 28px;
-      background: rgba(19, 25, 35, 0.9);
+      background: var(--header-bg);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-subtle);
-    }
-
-    body.theme-midnight-blue .site-header {
-      background: rgba(14, 21, 34, 0.92);
     }
 
     .brand-link {
@@ -145,14 +188,6 @@
       letter-spacing: -0.01em;
     }
 
-    .brand-tag {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      color: var(--accent-blue);
-      font-weight: 600;
-    }
-
     .nav-group {
       display: flex;
       flex-wrap: wrap;
@@ -167,6 +202,7 @@
       font-weight: 500;
       padding: 6px 12px;
       border-radius: var(--radius-pill);
+      border: 1px solid transparent;
       transition: all 0.16s ease;
     }
 
@@ -174,15 +210,15 @@
     .nav-link.active {
       background: var(--accent-blue-soft);
       color: var(--accent-blue-bright);
-      border: 1px solid rgba(78, 168, 255, 0.35);
+      border-color: var(--border-accent);
     }
 
-    .shade-btn {
+    .theme-btn {
       border: 1px solid var(--border-accent);
       background: var(--accent-blue-soft);
       color: var(--accent-blue-bright);
       border-radius: var(--radius-pill);
-      padding: 6px 13px;
+      padding: 6px 14px;
       font-size: 11.5px;
       font-weight: 600;
       letter-spacing: 0.04em;
@@ -191,7 +227,7 @@
       transition: all 0.16s ease;
     }
 
-    .shade-btn:hover {
+    .theme-btn:hover {
       background: var(--accent-blue);
       color: var(--ink-inverse);
     }
@@ -230,19 +266,6 @@
       overflow: hidden;
     }
 
-    .callout-card::after {
-      content: "SLATE & BLUE";
-      position: absolute;
-      right: -8px;
-      bottom: -16px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 58px;
-      font-weight: 600;
-      color: var(--accent-blue);
-      opacity: 0.08;
-      pointer-events: none;
-    }
-
     .eyebrow {
       display: block;
       font-size: 11px;
@@ -265,7 +288,7 @@
     .hero-copy {
       font-size: 14px;
       color: var(--ink-secondary);
-      max-width: 50ch;
+      max-width: 52ch;
     }
 
     .role-chips {
@@ -319,12 +342,12 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 28px;
-      background: linear-gradient(180deg, rgba(78, 168, 255, 0.04) 0%, transparent 65%);
+      background: linear-gradient(180deg, var(--accent-blue-soft) 0%, transparent 65%);
     }
 
     .hero-display {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(46px, 5.4vw, 76px);
+      font-size: clamp(44px, 5.2vw, 72px);
       font-weight: 400;
       line-height: 0.94;
       letter-spacing: -0.025em;
@@ -345,6 +368,18 @@
       gap: 16px;
       padding-top: 20px;
       border-top: 1px solid var(--border-subtle);
+    }
+
+    .dial-link {
+      color: var(--accent-blue-bright);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--border-accent);
+    }
+
+    .dial-link:hover {
+      color: var(--accent-blue);
+      border-bottom-style: solid;
     }
 
     .btn {
@@ -377,7 +412,7 @@
     }
 
     .btn:hover {
-      background: rgba(78, 168, 255, 0.24);
+      background: var(--accent-blue-glow);
     }
 
     /* Sections */
@@ -472,7 +507,7 @@
     .kpi-card:hover {
       border-color: var(--accent-blue);
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
     }
 
     .kpi-label {
@@ -542,6 +577,7 @@
 
     .bar-legend {
       display: flex;
+      flex-wrap: wrap;
       gap: 16px;
       font-size: 11.5px;
       color: var(--ink-secondary);
@@ -590,14 +626,14 @@
 
     .fill-25 {
       height: 100%;
-      background: #4b5d78;
+      background: linear-gradient(90deg, var(--chart-maroon), var(--chart-maroon-bright));
       border-radius: var(--radius-pill);
       transition: width 0.45s ease;
     }
 
     .fill-26 {
       height: 100%;
-      background: linear-gradient(90deg, #2563eb, var(--accent-blue-bright));
+      background: linear-gradient(90deg, var(--chart-green), var(--chart-green-bright));
       border-radius: var(--radius-pill);
       transition: width 0.45s ease;
     }
@@ -781,6 +817,16 @@
       color: var(--ink-primary);
       padding-top: 10px;
       border-top: 1px dashed var(--border-subtle);
+    }
+
+    .case-learning {
+      margin-top: 8px;
+      padding: 9px 11px;
+      border-radius: 7px;
+      background: var(--bg-surface);
+      border-left: 2px solid var(--chart-green-bright);
+      font-size: 12px;
+      color: var(--ink-secondary);
     }
 
     .case-foot {
@@ -1098,7 +1144,6 @@
     <header class="site-header">
       <a href="#top" class="brand-link">
         <span class="brand-name">Jeremie Kobo</span>
-        <span class="brand-tag">Cape Town • Slate &amp; Blue</span>
       </a>
 
       <nav class="nav-group" aria-label="Page sections">
@@ -1108,8 +1153,8 @@
         <a href="#credentials" class="nav-link">Credentials &amp; Skills</a>
       </nav>
 
-      <button type="button" class="shade-btn" id="shade-toggle" aria-pressed="false">
-        Midnight Navy
+      <button type="button" class="theme-btn" id="theme-toggle" title="Switch portfolio theme">
+        Theme
       </button>
     </header>
 
@@ -1156,17 +1201,18 @@
 
       <div class="hero-right">
         <div>
-          <span class="eyebrow">One-Page Dark Grey &amp; Blue Showcase</span>
-          <h1 class="hero-display">Community<br><span class="blue-word">&amp; QA</span><br>Growth</h1>
+          <h1 class="hero-display">Community<br>&amp; QA <span class="blue-word">Momentum</span></h1>
           <p class="hero-copy" style="margin-top: 12px;">
-            Interactive single-page profile built around your Combined Profile &amp; QA Report, featuring period toggles, workflow benchmark inspection, and live filtering across all 8 customer care transcripts.
+            Interactive single-page profile built around the Combined Profile &amp; QA Report, featuring period toggles, workflow benchmark inspection, and live filtering across all 8 customer care transcripts.
           </p>
         </div>
 
         <div class="hero-bottom-bar">
           <div>
             <div style="font-size: 15px; font-weight: 700;">Jeremie Kobo</div>
-            <div style="font-size: 12.5px; color: var(--ink-muted);">Observatory, Cape Town • +27 76 295 3941</div>
+            <div style="font-size: 12.5px; color: var(--ink-muted);">
+              Observatory, Cape Town • <a href="tel:+27762953941" class="dial-link">+27 76 295 3941</a>
+            </div>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 10px;">
             <a href="#dashboard" class="btn btn-primary">QA Dashboard</a>
@@ -1243,8 +1289,8 @@
             <span>2025 vs 2026</span>
           </div>
           <div class="bar-legend">
-            <span><i style="background:#4b5d78;"></i>2025 (36 checks)</span>
-            <span><i style="background:var(--accent-blue);"></i>2026 (40 checks)</span>
+            <span><i style="background:var(--chart-maroon-bright);"></i>2025 (36 checks)</span>
+            <span><i style="background:var(--chart-green-bright);"></i>2026 (40 checks)</span>
           </div>
 
           <div class="bar-item">
@@ -1441,18 +1487,13 @@
                 <td>Network fundamentals, infrastructure, protocols, and system documentation.</td>
               </tr>
               <tr>
-                <td><strong>CISSP Study and Security Concepts Course</strong><br><span style="color:var(--ink-muted);font-size:11.5px;">Alison • Cape Town</span></td>
-                <td class="font-mono">—</td>
-                <td>Security governance, data protection, and operational risk concepts.</td>
-              </tr>
-              <tr>
                 <td><strong>Certificate in Web Development</strong><br><span style="color:var(--ink-muted);font-size:11.5px;">CodeSpace Academy • Cape Town</span></td>
                 <td class="font-mono">2019</td>
                 <td>HTML, CSS, PHP, MySQL, and GitHub.</td>
               </tr>
               <tr>
                 <td><strong>National Senior Certificate (Matric)</strong><br><span style="color:var(--ink-muted);font-size:11.5px;">Queens Park High School • Cape Town</span></td>
-                <td class="font-mono">2014–2018</td>
+                <td class="font-mono">2018</td>
                 <td>Secondary school qualification.</td>
               </tr>
             </tbody>
@@ -1537,6 +1578,7 @@
       </div>
       <div class="bubble-list" id="modal-bubbles"></div>
       <div class="insight-box" id="modal-eval"></div>
+      <div class="case-learning" id="modal-learning" style="display:none;margin-top:12px;"></div>
     </div>
   </div>
 
@@ -1597,7 +1639,7 @@
         messages: [
           { who: "Customer (Nthabeleng, PM)", text: "Hello, Vodacom! / I want Data sim card / Yes [to prior eligibility checks] / Yes am working and I need that sim card / Hello" },
           { who: "Prior Agents & System", text: "Asked about contract criteria (permanently/self-employed, R3500+, clear credit), requested deal screenshot and contact number, and sent automated inactivity check-ins." },
-          { who: "Jeremie Kobo (just now)", text: "Hi Nthabeleng. Thanks for reaching out! If this is related to your previous case, could you please share a screenshot of the specific data deal you'd like to apply for, along with a contact number to reach you on?? category=2964&isShowQualifying=false&subcategory $=2970$ If this is a new case, how may we assist you today?" }
+          { who: "Jeremie Kobo (just now)", text: "Hi Nthabeleng. Thanks for reaching out! If this is related to your previous case, could you please share a screenshot of the specific data deal you'd like to apply for, along with a contact number to reach you on?? [link params removed] If this is a new case, how may we assist you today?" }
         ]
       },
       {
@@ -1607,12 +1649,12 @@
         sentiment: "Positive",
         queue: "First Response",
         category: "Upgrade / Account Enquiry",
-        excerpt: 'Jeremie Kobo: "Hi Lumka, thank you for reaching out. We\'re sorry to hear that your current package feels expensive. We\'d be happy to check the upgrade options available on your Vodacom account. Please send us your affected Vodacom number and an alternative contact number via private message..."',
+        excerpt: 'Jeremie Kobo: "Hi Lumka, thank you for reaching out. We\'re sorry to hear that your current package feels expensive. We\'d be happy to check the upgrade options available on your Vodacom account. Please send us your affected account number and an alternative contact number via private message..."',
         eval: "Acknowledges cost concerns empathetically, categorises the request accurately, and moves account details into a private message. Keep public and private instructions aligned.",
         messages: [
           { who: "Customer (Lumka, Comment)", text: "Please help I am due for upgrade and would love to have this offer rather than the one I am on which is very expensive" },
-          { who: "Jeremie Kobo (Reply)", text: "Hi Lumka, thank you for reaching out. We're sorry to hear that your current package feels expensive. We'd be happy to check the upgrade options available on your Vodacom account. Please send us your affected Vodacom number and an alternative contact number via private message so that we can assist further with your upgrade enquiry." },
-          { who: "Jeremie Kobo (Private Message)", text: "Hi Lumka, thank you for reaching out. Please send us your affected Vodacom number and an alternative contact number so that we can assist further with your upgrade enquiry." }
+          { who: "Jeremie Kobo (Reply)", text: "Hi Lumka, thank you for reaching out. We're sorry to hear that your current package feels expensive. We'd be happy to check the upgrade options available on your account. Please send us your affected account number and an alternative contact number via private message so that we can assist further with your upgrade enquiry." },
+          { who: "Jeremie Kobo (Private Message)", text: "Hi Lumka, thank you for reaching out. Please send us your affected account number and an alternative contact number so that we can assist further with your upgrade enquiry." }
         ]
       },
       {
@@ -1622,13 +1664,14 @@
         sentiment: "Negative",
         queue: "Second Line Escalation",
         category: "Service Outage / Escalation",
-        excerpt: 'Jeremie Kobo (Note): "SR260816-464030, 0794817282 Sub is unhappy about repeated fibre service outages affecting work-from-home duties and employment. (edited)" → Handed over to specialist queue (Luyanda Mahali).',
+        excerpt: 'Jeremie Kobo (Note): "SR260816-******, *** *** 7282 Sub is unhappy about repeated fibre service outages affecting work-from-home duties and employment. (edited)" → Handed over to specialist queue (Luyanda Mahali).',
         eval: "Calm de-escalation on a high-impact employment/service complaint, captures reference and contact details privately, logs internal handover note, and escalates cleanly.",
+        learning: "Learned & Improved: Even when de-escalating high-stress outage complaints cleanly, confirming full context before closing threads and keeping handover notes tight helps prevent repeat follow-ups—contributing to a 95.71% average QA score across 40 checks in 2026 (up from 92.08% in 2025) and cutting sub-90% scores in half (6 to 3).",
         messages: [
           { who: "Customer (Olebogeng, Mention)", text: "@vumatel your service is bad. Some of us work from home. Two days in a row, guess who wont get paid for the hours lost?? Me and guess who stands to lose her job because its a breach of employment contract!!!! @Vodacom why?? Was this change necessary?? We never this type of issues" },
           { who: "Jeremie Kobo (DM & Reply)", text: "Requested SR and contact number; directed to inbox; closed DM with 'Thank you for the information provided. We will be in touch,'." },
-          { who: "Customer (Olebogeng, DM)", text: "Vodacom: Service Request SR260816-464030, 0794817282" },
-          { who: "Jeremie Kobo (Note & Escalation)", text: "SR260816-464030, 0794817282 Sub is unhappy about repeated fibre service outages affecting work-from-home duties and employment. (edited) — Handed over to specialist queue (Luyanda Mahali)." }
+          { who: "Customer (Olebogeng, DM)", text: "Service Request SR260816-******, *** *** 7282" },
+          { who: "Jeremie Kobo (Note & Escalation)", text: "SR260816-******, *** *** 7282 Sub is unhappy about repeated fibre service outages affecting work-from-home duties and employment. (edited) — Handed over to specialist queue (Luyanda Mahali)." }
         ]
       },
       {
@@ -1653,7 +1696,7 @@
         queue: "First Response",
         category: "Porting / Service Delay",
         excerpt: 'Jeremie Kobo: "Hi Nello. We completely understand how frustrating this delay is, and we\'re sorry for the hassle. Have you had a chance to reach out to our porting team yet?..."',
-        eval: "Acknowledges ongoing delay empathetically, checks what steps were already tried, and gives a clear fallback path with contact numbers so unresolved cases do not stall.",
+        eval: "Acknowledges ongoing delay empathetically, checks what steps were already tried, and gives a clear fallback path with contact details so unresolved cases do not stall.",
         messages: [
           { who: "Customer (Nello, PM)", text: "Asked about porting turnaround time, noted service outage since Saturday, and followed up when the transfer remained incomplete." },
           { who: "Jeremie Kobo (PM)", text: "Hi Nello. We completely understand how frustrating this delay is, and we're sorry for the hassle. Have you had a chance to reach out to our porting team yet? If you haven't, please give them a call first so they can check the status. However, if you're unable to get through to them, just reply with the number you're trying to port and an alternative contact number." }
@@ -1666,11 +1709,11 @@
         sentiment: "Positive",
         queue: "First Response",
         category: "Sales / Business or Corporate",
-        excerpt: 'Jeremie Kobo (Note & PM): Explained #BoostYourBusiness bundle (200GB SIM ONLY, R299 PM x24) is a business deal, shared business contact (082 1940), personal option link, and qualification criteria.',
+        excerpt: 'Jeremie Kobo (Note & PM): Explained #BoostYourBusiness bundle (200GB SIM ONLY, R299 PM x24) is a business deal, shared business channel info (082 ****), personal option link, and qualification criteria.',
         eval: "Identifies business vs. consumer distinction, applies accurate categorisation, and gives clear routing plus an alternative option. Verify links match the target segment.",
         messages: [
           { who: "Campaign & Customer (Thabos)", text: "#BoostYourBusiness post (200GB SIM ONLY | 100GB Anytime + 100GB Night Owl, R299 PM x24). Comment: 'I want it'" },
-          { who: "Jeremie Kobo (Note & PM)", text: "Explained that the advertised offer is a business deal that cannot be processed directly on that channel, provided the business contact number (082 1940), shared a personal deal option link, and outlined qualification criteria and contact request." }
+          { who: "Jeremie Kobo (Note & PM)", text: "Explained that the advertised offer is a business deal that cannot be processed directly on that channel, provided the business support route (082 ****), shared a personal deal option link, and outlined qualification criteria and contact request." }
         ]
       },
       {
@@ -1680,11 +1723,12 @@
         sentiment: "Negative",
         queue: "First Response",
         category: "Promotional Allocation / Support",
-        excerpt: 'Jeremie Kobo (PM): Requested affected Vodacom number, IMEI, SIM number (starting with 89), purchase date, store name/address, device make/model, and alternate number.',
+        excerpt: 'Jeremie Kobo (PM): Requested affected account number, IMEI, SIM serial prefix, purchase date, store name/address, device make/model, and alternate contact.',
         eval: "Collects key diagnostic fields upfront for root-cause investigation and escalation. Place each requested field on its own line for readability.",
+        learning: "Learned & Improved: Gathering diagnostic fields upfront speeds up root-cause checks, and formatting multi-item checklists on separate lines makes them easier for customers to scan—supporting our jump to 70.0% (28/40) scores ≥ 95% and 21 perfect 100% scores in 2026.",
         messages: [
           { who: "Customer (Simo, PM)", text: "Reported not receiving 10GB promotional data 3 days after purchasing a new device and recharging with R29." },
-          { who: "Jeremie Kobo (PM)", text: "Hi Simo. We understand your concern. To assist further, please provide the following details so that we can investigate your promotional data query: Affected Vodacom number, IMEI number of the device, SIM number (starting with 89), Date of purchase, Store name and address where the device was purchased, device make and model, and an alternative number." }
+          { who: "Jeremie Kobo (PM)", text: "Hi Simo. We understand your concern. To assist further, please provide the following details so that we can investigate your promotional data query:\n• Affected account number\n• IMEI number of the device\n• SIM serial identifier\n• Date of purchase\n• Store name and address where the device was purchased\n• Device make and model\n• Alternative contact number" }
         ]
       },
       {
@@ -1729,20 +1773,33 @@
     window.addEventListener("scroll", updateScroll, { passive: true });
     updateScroll();
 
-    // Slate-Blue vs. Midnight-Navy Shade Switcher
-    const shadeBtn = document.getElementById("shade-toggle");
-    const savedShade = localStorage.getItem("jk-blue-shade");
-    if (savedShade === "midnight") {
-      document.body.classList.add("theme-midnight-blue");
-      shadeBtn.textContent = "Slate Blue";
-      shadeBtn.setAttribute("aria-pressed", "true");
+    // 3-Theme Switcher: Default (Slate & Blue) -> Grey & Black -> White, Light Blue & Grey
+    const themeBtn = document.getElementById("theme-toggle");
+    const themeOrder = ["default", "theme-grey-black", "theme-light-sky"];
+    const themeNames = {
+      default: "Default",
+      "theme-grey-black": "Grey & Black",
+      "theme-light-sky": "Light Blue & Grey"
+    };
+
+    function applyTheme(mode) {
+      document.body.classList.remove("theme-grey-black", "theme-light-sky");
+      if (mode !== "default") {
+        document.body.classList.add(mode);
+      }
+      themeBtn.textContent = "Theme";
+      themeBtn.setAttribute("aria-label", `Theme (Current: ${themeNames[mode]})`);
+      themeBtn.setAttribute("title", `Theme: ${themeNames[mode]} — click to switch`);
+      localStorage.setItem("jk-portfolio-theme", mode);
     }
 
-    shadeBtn.addEventListener("click", () => {
-      const isMidnight = document.body.classList.toggle("theme-midnight-blue");
-      shadeBtn.textContent = isMidnight ? "Slate Blue" : "Midnight Navy";
-      shadeBtn.setAttribute("aria-pressed", String(isMidnight));
-      localStorage.setItem("jk-blue-shade", isMidnight ? "midnight" : "slate");
+    const savedTheme = localStorage.getItem("jk-portfolio-theme");
+    let currentThemeIndex = Math.max(0, themeOrder.indexOf(savedTheme));
+    applyTheme(themeOrder[currentThemeIndex]);
+
+    themeBtn.addEventListener("click", () => {
+      currentThemeIndex = (currentThemeIndex + 1) % themeOrder.length;
+      applyTheme(themeOrder[currentThemeIndex]);
     });
 
     // QA Period Selector
@@ -1797,6 +1854,7 @@
           item.category.toLowerCase().includes(q) ||
           item.queue.toLowerCase().includes(q) ||
           item.eval.toLowerCase().includes(q) ||
+          (item.learning && item.learning.toLowerCase().includes(q)) ||
           item.excerpt.toLowerCase().includes(q);
         return matchSent && matchText;
       });
@@ -1821,6 +1879,7 @@
             <div class="case-quote">${c.excerpt}</div>
             <div>
               <div class="case-eval"><strong>QA Note:</strong> ${c.eval}</div>
+              ${c.learning ? `<div class="case-learning">${c.learning}</div>` : ""}
               <div class="case-foot">
                 <span style="font-size:11.5px;color:var(--ink-muted);">${c.messages.length} entries</span>
                 <button type="button" class="link-btn inspect-btn" data-id="${c.id}">Inspect Log</button>
@@ -1862,12 +1921,19 @@
           return `
             <div class="bubble ${isJeremie ? "agent" : ""}">
               <div class="bubble-who">${m.who}</div>
-              <div>${m.text}</div>
+              <div style="white-space:pre-line;">${m.text}</div>
             </div>
           `;
         })
         .join("");
       document.getElementById("modal-eval").innerHTML = `<strong>QA Evaluation:</strong> ${c.eval}`;
+      const learningEl = document.getElementById("modal-learning");
+      if (c.learning) {
+        learningEl.innerHTML = c.learning;
+        learningEl.style.display = "block";
+      } else {
+        learningEl.style.display = "none";
+      }
       modal.classList.add("open");
     }
 
